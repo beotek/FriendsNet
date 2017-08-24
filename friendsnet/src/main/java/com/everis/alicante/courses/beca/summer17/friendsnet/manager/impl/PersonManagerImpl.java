@@ -9,6 +9,7 @@ import com.everis.alicante.courses.beca.summer17.friendsnet.dao.PersonDAO;
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.FNEntity;
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
 import com.everis.alicante.courses.beca.summer17.friendsnet.manager.PersonManager;
+
 @Service
 public class PersonManagerImpl<E extends FNEntity, ID extends Serializable> implements PersonManager<Person,Long>{
 	@Autowired
@@ -27,20 +28,23 @@ public class PersonManagerImpl<E extends FNEntity, ID extends Serializable> impl
 	}
 
 	@Override
-	public void save(Person e) {
-		personDao.save(e);
-		
+	public Person save(Person e) {
+		return personDao.save(e);
 	}
 
 	@Override
-	public void update(Person e) {
-		personDao.update(e);
-		
+	public Iterable<Person> save(Iterable<Person> e) {
+		return personDao.save(e);
 	}
 
 	@Override
-	public void update(Iterable<Person> e) {
-		personDao.update(e);
+	public Person update(Person e) {
+		return personDao.update(e);
+	}
+
+	@Override
+	public Iterable<Person> update(Iterable<Person> e) {
+		return personDao.update(e);
 	}
 
 	@Override
@@ -50,8 +54,10 @@ public class PersonManagerImpl<E extends FNEntity, ID extends Serializable> impl
 	}
 
 	@Override
-	public Person relatePersons(Iterable<Person> person) {
-		return personDao.relatePersons(person);
+	public Person relatePersons(Long id, Iterable<Long> persons) {
+//		Person person = personDao.findById(id);
+//	    personDao.relatePersons(person, persons);
+		return null;
 	}
 
 

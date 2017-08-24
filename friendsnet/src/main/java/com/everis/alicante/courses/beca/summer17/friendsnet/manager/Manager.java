@@ -4,8 +4,9 @@ public interface Manager<E, ID> {
 
 	public Iterable<E> findAll();
 	public E findById(ID id);
-	public void save(E e);
-	public void update(E e);
-	public void update(Iterable<E> e);
+	public E save(E e);
+	public Iterable<E> save(Iterable<E> e);
+	public E update(E e);
+	public Iterable<E> update(Iterable<E> e);
 	public void remove(E e);
 }

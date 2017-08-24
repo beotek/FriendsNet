@@ -4,6 +4,6 @@ import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
 
 public interface PersonDAO extends EntityDAO<Person, Long> {
 
-	public Person relatePersons(Iterable<Person> person);
+	public Person relatePersons(Person person, Iterable<Person> persons);
 	
 }

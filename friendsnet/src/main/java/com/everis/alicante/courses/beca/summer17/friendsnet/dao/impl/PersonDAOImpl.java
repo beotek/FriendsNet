@@ -7,7 +7,7 @@ import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
 
 public class PersonDAOImpl extends AbstractDAO<Person, Long> implements PersonDAO {
 
-	public Person relatePersons(Iterable<Person> person) {
+	public Person relatePersons(Person person, Iterable<Person> persons) {
 		return null;
 	}
 	
