@@ -1,11 +1,16 @@
 package com.everis.alicante.courses.beca.summer17.friendsnet.entity;
 
-public class Person implements FNEntity {
+import lombok.Data;
+
+
+@Data
+public  class Person implements FNEntity {
 
 	private Long id;
 	private String name;
 	private String surname;
 	private byte[] picture;
+	
 	public Long getId() {
 		return id;
 	}
@@ -30,6 +35,5 @@ public class Person implements FNEntity {
 	public void setPicture(byte[] picture) {
 		this.picture = picture;
 	}
-	
-	
+
 }

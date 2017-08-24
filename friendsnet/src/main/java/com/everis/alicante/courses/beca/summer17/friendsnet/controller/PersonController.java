@@ -34,6 +34,7 @@ public class PersonController {
 	public Person create(@RequestBody Person p) {
 		 manager.save(p);
 		 return manager.findById(p.getId());
+
 	}
 	
 	@PostMapping("{id}/relate")
