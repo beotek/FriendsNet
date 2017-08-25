@@ -52,8 +52,8 @@ public class GroupManagerImpl implements GroupManager{
 	}
 
 	@Override
-	public Group addPersons(Iterable<Person> persons) {
-		return this.groupDao.addPersons(persons);
+	public Group addPersons(Group group,Iterable<Person> persons) {
+		return this.groupDao.addPersons(group, persons);
 	}
 
 }

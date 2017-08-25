@@ -6,5 +6,6 @@ import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
 
 public interface GroupManager extends Manager<Group,Long>{
 
-	public Group addPersons(Iterable<Person> persons);
+
+	public Group addPersons(Group group, Iterable<Person> persons);
 }
