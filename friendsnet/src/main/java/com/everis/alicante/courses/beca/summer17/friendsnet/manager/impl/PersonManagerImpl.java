@@ -58,7 +58,7 @@ public class PersonManagerImpl implements PersonManager{
 	public Person relatePersons(Long id, Iterable<Long> newFriendsIds) {
 		Person person = personDao.findById(id);
 		Set<Person> friends = (Set<Person>) personDao.findByIds(newFriendsIds);
-		//person.getPersons().addAll(friends);
+		person.getPersons().addAll(friends);
 		return person;
 	}
 
