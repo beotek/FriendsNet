@@ -13,48 +13,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Group;
-import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
-import com.everis.alicante.courses.beca.summer17.friendsnet.manager.GroupManager;
-import com.everis.alicante.courses.beca.summer17.friendsnet.manager.PersonManager;
+import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Event;
+import com.everis.alicante.courses.beca.summer17.friendsnet.manager.EventManager;
 
 @RestController
-@RequestMapping("/group")
+@RequestMapping("/event")
 @Transactional
-public class GroupController {
-	
-	@Autowired
-	private GroupManager manager;
+public class EventController {
 
+	@Autowired
+	private EventManager manager;
 	
 	@GetMapping
-	public List<Group> getAll(){
-		return (List<Group>) this.manager.findAll();
+	public List<Event> getAll(){
+		return (List<Event>) this.manager.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public Group getById(@RequestParam Long id) {
+	public Event getById(@RequestParam Long id) {
 		return this.manager.findById(id);
 	}
-	
-	@PostMapping
-	public Group create(@RequestBody Group group) {
-		return this.manager.save(group);
-	}
-	
 	@GetMapping("/person/{id}")
-	public Group getByPersonId(@RequestParam Long id) {
+	public Event addPerson(@RequestParam Long id,@RequestParam  Long id2) {
 		return null;
 	}
-	
-	@PostMapping("/{id}/relate")
-	public Person relate(@RequestBody Long person,@RequestBody List<Long> persons) {
+	@PostMapping("/{id}/person/{idPerson}/add")
+	public List<Event> getByPersonId(@RequestBody Long id){
 		return null;
 	}
-	
+	@PostMapping
+	public Event create(@RequestBody Event event) {
+		return this.manager.save(event);
+	}
 	@DeleteMapping("/{id}")
 	public void remove(Long id) {
 		this.manager.remove(this.manager.findById(id));
 	}
-
+	
+	
 }

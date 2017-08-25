@@ -10,9 +10,11 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.Set;
 
 
 public abstract class AbstractDAO<E extends FNEntity, ID extends Serializable> implements EntityDAO<E, ID>{
+
 	
 	private final Class<E> persistentClass;
 	
@@ -39,9 +41,11 @@ public abstract class AbstractDAO<E extends FNEntity, ID extends Serializable> i
 	
 	public E findById(ID id) {
 		return entityManager.find(persistentClass, id);
-		
 	}
-	
+
+	public Iterable<E> findByIds(Iterable<ID> ids) {
+		return (Iterable<E>) entityManager.find(persistentClass, ids);
+	}
 	public E save(E e) {
 		entityManager.persist(e);
 		return e;

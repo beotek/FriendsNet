@@ -4,6 +4,7 @@ public interface EntityDAO<E, ID> {
 	
 	public Iterable<E> findAll();
 	public E findById(ID id);
+	public Iterable<E> findByIds(Iterable<ID> ids);
 	public E save(E e);
 	public Iterable<E> save(Iterable<E> e);
 	public E update(E e);
