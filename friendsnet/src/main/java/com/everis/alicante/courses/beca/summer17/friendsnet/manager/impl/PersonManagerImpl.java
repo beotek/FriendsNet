@@ -11,7 +11,7 @@ import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
 import com.everis.alicante.courses.beca.summer17.friendsnet.manager.PersonManager;
 
 @Service
-public class PersonManagerImpl implements PersonManager<Person,Long>{
+public class PersonManagerImpl implements PersonManager{
 	@Autowired
 	private PersonDAO personDao;
 
