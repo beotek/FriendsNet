@@ -1,13 +1,13 @@
 package com.everis.alicante.courses.beca.summer17.friendsnet.manager.impl;
 
-import java.io.Serializable;
+
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.everis.alicante.courses.beca.summer17.friendsnet.dao.PersonDAO;
-import com.everis.alicante.courses.beca.summer17.friendsnet.entity.FNEntity;
+
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
 import com.everis.alicante.courses.beca.summer17.friendsnet.manager.PersonManager;
 
@@ -55,10 +55,10 @@ public class PersonManagerImpl implements PersonManager{
 	}
 
 	@Override
-	public Person relatePersons(Long id, Iterable<Long> newFriendsIds) {
+	public Person relatePersons(Long id, Iterable<Long> personsIds) {
 		Person person = personDao.findById(id);
-		Set<Person> friends = (Set<Person>) personDao.findByIds(newFriendsIds);
-		person.getPersons().addAll(friends);
+		Set<Person> persons = (Set<Person>) personDao.findByIds(personsIds);
+		person.getPersons().addAll(persons);
 		return person;
 	}
 
