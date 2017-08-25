@@ -18,38 +18,38 @@ public class PersonManagerImpl implements PersonManager{
 	@Override
 	public Iterable<Person> findAll() {
 		
-		return personDao.findAll();
+		return this.personDao.findAll();
 	}
 
 	@Override
 	public Person findById(Long id) {
 		
-		return personDao.findById(id);
+		return this.personDao.findById(id);
 	}
 
 	@Override
 	public Person save(Person e) {
-		return personDao.save(e);
+		return this.personDao.save(e);
 	}
 
 	@Override
 	public Iterable<Person> save(Iterable<Person> e) {
-		return personDao.save(e);
+		return this.personDao.save(e);
 	}
 
 	@Override
 	public Person update(Person e) {
-		return personDao.update(e);
+		return this.personDao.update(e);
 	}
 
 	@Override
 	public Iterable<Person> update(Iterable<Person> e) {
-		return personDao.update(e);
+		return this.personDao.update(e);
 	}
 
 	@Override
 	public void remove(Person e) {
-		personDao.remove(e);
+		this.personDao.remove(e);
 		
 	}
 
