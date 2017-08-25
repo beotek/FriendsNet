@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import lombok.Data;
 
 @Data
-@Entity
+@Entity(name="grouptable")
 public class Group implements FNEntity {
 
 	@Id
