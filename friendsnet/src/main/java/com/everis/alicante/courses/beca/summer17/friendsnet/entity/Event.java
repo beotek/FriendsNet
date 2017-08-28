@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,6 +32,7 @@ public class Event implements FNEntity {
 	private String name;
 	private Date startingDate;
 	private Date endingDate;
+	@Enumerated(EnumType.STRING)
 	private EventType type;
 	private byte[] picture;
 	
