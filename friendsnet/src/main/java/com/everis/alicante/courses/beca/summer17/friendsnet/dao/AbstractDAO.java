@@ -9,11 +9,13 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
+
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.Set;
 
-
+@Transactional
 public abstract class AbstractDAO<E extends FNEntity, ID extends Serializable> implements EntityDAO<E, ID>{
 
 	

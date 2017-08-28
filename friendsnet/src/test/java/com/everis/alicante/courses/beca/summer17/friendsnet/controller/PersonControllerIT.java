@@ -3,6 +3,9 @@ package com.everis.alicante.courses.beca.summer17.friendsnet.controller;
 import com.everis.alicante.courses.beca.summer17.friendsnet.dao.PersonDAO;
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import javax.transaction.Transactional;
+
 import org.json.JSONException;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,10 +41,7 @@ public class PersonControllerIT {
     public void setup() {
 
         this.mapper = new ObjectMapper();
-        Iterable<Person> all = dao.findAll();
-        for(Person person: all) {
-            dao.remove(person);
-        }
+      
     }
 
 
@@ -64,11 +64,9 @@ public class PersonControllerIT {
         //Arrange
         HttpEntity<String> entity = new HttpEntity<String>(null, headers);
         Person person = new Person();
-    
         person.setName("taka");
         person.setSurname("toko");
         dao.save(person);
-     
 
         // Act
         ResponseEntity<String> response = restTemplate.exchange(
@@ -76,7 +74,7 @@ public class PersonControllerIT {
                 HttpMethod.GET, null, String.class);
 
         // Assert
-        JSONAssert.assertEquals("[{'id': 1, 'name':'taka', 'surname':'toko'} ]", response.getBody(), false);
+        JSONAssert.assertEquals("[{'id': 1, 'name': 'taka', 'surname':'toko'} ]", response.getBody(), false);
     }
 
     private String createURLWithPort(String uri) {

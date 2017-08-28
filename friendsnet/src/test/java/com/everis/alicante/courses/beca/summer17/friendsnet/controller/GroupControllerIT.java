@@ -54,15 +54,14 @@ public class GroupControllerIT {
         HttpEntity<String> entity = new HttpEntity<String>(null, headers);
         dao.save(new Group());
      
-        dao.save(new Group());
 
         // Act
         ResponseEntity<String> response = restTemplate.exchange(
                 createURLWithPort("/group"),
-                HttpMethod.GET, null, String.class);
+                HttpMethod.GET, entity, String.class);
 
         // Assert
-        JSONAssert.assertEquals("[{'id': 1, 'name':''}, {'id': 2, 'name':''}]", response.getBody(), false);
+        JSONAssert.assertEquals("[{'id': 1}]", response.getBody(), false);
 	}
 	@Test
 	public void testGetById() {

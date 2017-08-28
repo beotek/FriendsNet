@@ -1,6 +1,6 @@
 spring:
   application:
-    name: frindsnet
+    name: friendsnet
   datasource:
     hikari:
       connection-timeout: 60000
