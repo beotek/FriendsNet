@@ -18,7 +18,7 @@ public class PersonDAOImpl extends AbstractDAO<Person, Long> implements PersonDA
         Person person = this.findById(id);
         List<Person> persons = new ArrayList<Person>();
         this.findByIds(ids).forEach(persons::add);
-        person.relate(persons);
+       // person.relate(persons);
         this.update(person);
         return person;
     }

@@ -10,11 +10,6 @@ import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
 @Service
 public class GroupDAOImpl extends AbstractDAO<Group, Long> implements GroupDAO{
 
-	@Override
-	public Group addPersons(Group group, Iterable<Person> persons) {
-		
-		return null;
-	}
 
 
 

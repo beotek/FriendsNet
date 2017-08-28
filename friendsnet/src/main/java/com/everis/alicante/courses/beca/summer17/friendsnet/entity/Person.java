@@ -1,6 +1,5 @@
 package com.everis.alicante.courses.beca.summer17.friendsnet.entity;
 
-
 import java.util.List;
 import java.util.Set;
 
@@ -20,15 +19,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="PERSON")
-@EqualsAndHashCode(callSuper=false, exclude= {"persons"})
-
-public  class Person implements FNEntity {
-
+@Table(name = "PERSON")
+@EqualsAndHashCode(callSuper = false, exclude = { "persons" })
+public class Person implements FNEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 
@@ -37,39 +34,35 @@ public  class Person implements FNEntity {
 	private String name;
 	private String surname;
 	private byte[] picture;
-	
 
 	@ManyToMany(cascade = { CascadeType.ALL })
-	@JoinTable(name = "persons", joinColumns = { @JoinColumn(name = "id") }, inverseJoinColumns = {@JoinColumn(name = "person_id") })
+	@JoinTable(name = "persons", joinColumns = { @JoinColumn(name = "id") }, inverseJoinColumns = {
+			@JoinColumn(name = "person_id") })
 	@JsonIgnore
-	private final Set<Person> persons;
-	
+	private Set<Person> persons;
+
 	@ManyToMany(mappedBy = "persons")
 	@JsonIgnore
-	private final Set<Person> person;
-	
+	private Set<Person> person;
 
 	@ManyToMany(mappedBy = "personsInGroup")
 	@JsonIgnore
-	private final Set<Group> groups;
-	
-	
+	private Set<Group> groups;
+
 	@OneToMany(mappedBy = "likesByPerson")
 	@JsonIgnore
-	private final Set<Like> likes;
-
+	private Set<Like> likes;
 
 	@OneToMany(mappedBy = "postsByPerson")
 	@JsonIgnore
-	private final Set<Post> posts;
+	private Set<Post> posts;
 
-	
 	@ManyToMany(mappedBy = "personsEvent")
 	@JsonIgnore
-	private final Set<Event> events;
-	
-	 public void relate(List<Person> persons) {
-	        this.getPersons().addAll(persons);
-	    }
-	
+	private Set<Event> events;
+
+//	 public void relate(List<Person> persons) {
+//	 this.getPersons().addAll(persons);
+//	 }
+
 }
