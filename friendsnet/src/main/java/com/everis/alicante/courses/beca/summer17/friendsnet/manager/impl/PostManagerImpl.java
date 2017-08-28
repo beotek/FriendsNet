@@ -3,6 +3,8 @@ package com.everis.alicante.courses.beca.summer17.friendsnet.manager.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.everis.alicante.courses.beca.summer17.friendsnet.dao.LikeDAO;
+import com.everis.alicante.courses.beca.summer17.friendsnet.dao.PersonDAO;
 import com.everis.alicante.courses.beca.summer17.friendsnet.dao.PostDAO;
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Like;
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Post;
@@ -13,6 +15,12 @@ public class PostManagerImpl implements PostManager{
 
 	@Autowired
 	private PostDAO postDao;
+	
+	@Autowired
+	private PersonDAO personDAO;
+	
+	@Autowired
+	private LikeDAO likeDAO;
 	
 	@Override
 	public Iterable<Post> findAll() {

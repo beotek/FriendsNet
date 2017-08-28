@@ -4,6 +4,7 @@ import com.everis.alicante.courses.beca.summer17.friendsnet.entity.FNEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -44,7 +45,9 @@ public abstract class AbstractDAO<E extends FNEntity, ID extends Serializable> i
 	}
 
 	public Iterable<E> findByIds(Iterable<ID> ids) {
-		return (Iterable<E>) entityManager.find(persistentClass, ids);
+		  Query query = entityManager.createQuery("SELECT e FROM " + this.persistentClass.getName() + " e WHERE e.id IN (:idList)");
+	      query.setParameter("idList", ids);
+	      return (Iterable<E>) query.getResultList();
 	}
 	public E save(E e) {
 		entityManager.persist(e);

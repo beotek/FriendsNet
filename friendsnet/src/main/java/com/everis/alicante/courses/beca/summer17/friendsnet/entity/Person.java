@@ -1,6 +1,7 @@
 package com.everis.alicante.courses.beca.summer17.friendsnet.entity;
 
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -66,5 +67,9 @@ public  class Person implements FNEntity {
 	@ManyToMany(mappedBy = "personsEvent")
 	@JsonIgnore
 	private final Set<Event> events;
+	
+	 public void relate(List<Person> persons) {
+	        this.getPersons().addAll(persons);
+	    }
 	
 }

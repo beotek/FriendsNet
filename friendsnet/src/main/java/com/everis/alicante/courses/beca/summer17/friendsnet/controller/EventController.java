@@ -1,6 +1,7 @@
 package com.everis.alicante.courses.beca.summer17.friendsnet.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Event;
+import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
 import com.everis.alicante.courses.beca.summer17.friendsnet.manager.EventManager;
+import com.everis.alicante.courses.beca.summer17.friendsnet.manager.PersonManager;
 
 @RestController
 @RequestMapping("/event")
@@ -23,6 +26,9 @@ public class EventController {
 
 	@Autowired
 	private EventManager manager;
+	
+	@Autowired
+	private PersonManager personManager;
 	
 	@GetMapping
 	public List<Event> getAll(){
@@ -33,13 +39,19 @@ public class EventController {
 	public Event getById(@RequestParam Long id) {
 		return this.manager.findById(id);
 	}
-	@GetMapping("/person/{id}")
-	public Event addPerson(@RequestParam Long id,@RequestParam  Long id2) {
+	
+	@PostMapping("/{id}/person/{idPerson}/add")
+	public Event addPerson(@RequestParam Long id,@RequestParam  Long idPerson) {
+		Event event = this.manager.findById(id);
+		Person person = this.personManager.findById(idPerson);
+		event.getPersonsEvent().add(person);
 		return null;
 	}
-	@PostMapping("/{id}/person/{idPerson}/add")
-	public List<Event> getByPersonId(@RequestBody Long id){
-		return null;
+	
+	@GetMapping("/person/{id}")
+	public Set<Event> getByPersonId(@RequestBody Long id){
+		Person person = this.personManager.findById(id);
+		return person.getEvents();
 	}
 	@PostMapping
 	public Event create(@RequestBody Event event) {

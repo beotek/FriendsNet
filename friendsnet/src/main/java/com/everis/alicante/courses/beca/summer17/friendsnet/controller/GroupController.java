@@ -1,6 +1,7 @@
 package com.everis.alicante.courses.beca.summer17.friendsnet.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -25,6 +26,9 @@ public class GroupController {
 	
 	@Autowired
 	private GroupManager manager;
+	
+	@Autowired
+	private PersonManager personManager;
 
 	
 	@GetMapping
@@ -43,13 +47,17 @@ public class GroupController {
 	}
 	
 	@GetMapping("/person/{id}")
-	public Group getByPersonId(@RequestParam Long id) {
-		return null;
+	public Set<Group> getByPersonId(@RequestParam Long id) {
+		Person person = this.personManager.findById(id);
+		return person.getGroups();
 	}
 	
-	@PostMapping("/{id}/relate")
-	public Person relate(@RequestBody Long person,@RequestBody List<Long> persons) {
-		return null;
+	@PostMapping("/{idGroup}/relate")
+	public Group relate(@RequestBody Long idPerson,@RequestBody Long idGroup) {
+		Person person = this.personManager.findById(idPerson);
+		Group group = this.manager.findById(idGroup);
+		group.getPersonsInGroup().add(person);
+		return group;
 	}
 	
 	@DeleteMapping("/{id}")
