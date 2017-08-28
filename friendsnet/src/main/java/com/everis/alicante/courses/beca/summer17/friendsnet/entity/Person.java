@@ -1,6 +1,6 @@
 package com.everis.alicante.courses.beca.summer17.friendsnet.entity;
 
-import java.util.HashSet;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -18,51 +18,53 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
-import lombok.Getter;
+import lombok.EqualsAndHashCode;
 
 
 @Data
 @Entity
 @Table(name="PERSON")
+@EqualsAndHashCode(callSuper=false, exclude= {"persons"})
+
 public  class Person implements FNEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+
 	@Column(name = "person_id")
 	private Long id;
 	private String name;
 	private String surname;
 	private byte[] picture;
 	
-	@Getter(lazy=true)
+
 	@ManyToMany(cascade = { CascadeType.ALL })
-	@JoinTable(name = "friends", joinColumns = { @JoinColumn(name = "id") }, inverseJoinColumns = {@JoinColumn(name = "person_id") })
+	@JoinTable(name = "persons", joinColumns = { @JoinColumn(name = "id") }, inverseJoinColumns = {@JoinColumn(name = "person_id") })
 	@JsonIgnore
-	private final Set<Person> persons=new HashSet<>();
+	private final Set<Person> persons;
 	
-	@Getter(lazy=true)
-	@ManyToMany(mappedBy = "friends")
+	@ManyToMany(mappedBy = "persons")
 	@JsonIgnore
-	private final Set<Person> friend = new HashSet<>();
+	private final Set<Person> person;
 	
-	@Getter(lazy=true)
+
 	@ManyToMany(mappedBy = "personsInGroup")
 	@JsonIgnore
-	private final Set<Group> groups = new HashSet<>();
+	private final Set<Group> groups;
 	
-	@Getter(lazy=true)
+	
 	@OneToMany(mappedBy = "likesByPerson")
 	@JsonIgnore
-	private final Set<Like> likes = new HashSet<>();
+	private final Set<Like> likes;
 
-	@Getter(lazy=true)
+
 	@OneToMany(mappedBy = "postsByPerson")
 	@JsonIgnore
-	private final Set<Post> posts = new HashSet<>();
+	private final Set<Post> posts;
 
-	@Getter(lazy=true)
-	@ManyToMany(mappedBy = "personsInEvent")
+	
+	@ManyToMany(mappedBy = "personsEvent")
 	@JsonIgnore
-	private final Set<Event> events = new HashSet<>();
+	private final Set<Event> events;
 	
 }
