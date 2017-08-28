@@ -4,6 +4,8 @@ import com.everis.alicante.courses.beca.summer17.friendsnet.dao.PersonDAO;
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.Set;
+
 import javax.transaction.Transactional;
 
 import org.json.JSONException;
@@ -40,6 +42,10 @@ public class PersonControllerIT {
     @Before
     public void setup() {
 
+//    	Iterable<Person> persons = dao.findAll();
+//    	for(Person person: persons) {
+//    		dao.remove(person);
+//    	}
         this.mapper = new ObjectMapper();
       
     }
@@ -76,6 +82,12 @@ public class PersonControllerIT {
         // Assert
         JSONAssert.assertEquals("[{'id': 1, 'name': 'taka', 'surname':'toko'} ]", response.getBody(), false);
     }
+    
+  @Test
+  public void findById() {
+	  
+	  
+  }
 
     private String createURLWithPort(String uri) {
         return "http://localhost:" + port + uri;

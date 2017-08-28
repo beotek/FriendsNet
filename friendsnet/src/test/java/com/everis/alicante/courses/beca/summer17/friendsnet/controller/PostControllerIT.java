@@ -17,19 +17,20 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.everis.alicante.courses.beca.summer17.friendsnet.dao.GroupDAO;
-import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Group;
-import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
+
+import com.everis.alicante.courses.beca.summer17.friendsnet.dao.PostDAO;
+import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Post;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class GroupControllerIT {
+public class PostControllerIT {
+	
 	 @LocalServerPort
 	    private int port;
 
 	    @Autowired
-	    private GroupDAO dao;
+	    private PostDAO dao;
 
 	    TestRestTemplate restTemplate = new TestRestTemplate();
 
@@ -43,23 +44,23 @@ public class GroupControllerIT {
 	        this.mapper = new ObjectMapper();
 	     
 	    }
-	
-	
+
 	@Test
 	public void testGetAll() throws JSONException {
 		   //Arrange
         HttpEntity<String> entity = new HttpEntity<String>(null, headers);
-        dao.save(new Group());
+        dao.save(new Post());
      
 
         // Act
         ResponseEntity<String> response = restTemplate.exchange(
-                createURLWithPort("/group"),
+                createURLWithPort("/post"),
                 HttpMethod.GET, entity, String.class);
 
         // Assert
         JSONAssert.assertEquals("[{'id': 1}]", response.getBody(), false);
 	}
+
 	@Test
 	public void testGetById() {
 		fail("Not yet implemented");
@@ -76,17 +77,10 @@ public class GroupControllerIT {
 	}
 
 	@Test
-	public void testRelate() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testRemove() {
 		fail("Not yet implemented");
 	}
-	
 	   private String createURLWithPort(String uri) {
 	        return "http://localhost:" + port + uri;
 	    }
-
 }
