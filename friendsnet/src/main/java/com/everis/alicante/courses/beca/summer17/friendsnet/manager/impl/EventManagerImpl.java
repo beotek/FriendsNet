@@ -17,7 +17,7 @@ public class EventManagerImpl implements EventManager{
 		return this.eventDao.findAll();
 	}
 	public Event findById(Long id) {
-		return this.eventDao.findById(id);
+		return this.eventDao.findOne(id);
 	}
 	public Event save(Event event) {
 		return this.eventDao.save(event);
@@ -26,13 +26,13 @@ public class EventManagerImpl implements EventManager{
 		return this.eventDao.save(event);
 	}
 	public Event update(Event event) {
-		return this.eventDao.update(event);
+		return this.eventDao.save(event);
 	}
 	public Iterable<Event> update(Iterable<Event> event){
-		return this.eventDao.update(event);
+		return this.eventDao.save(event);
 	}
 	public void remove(Event event) {
-		this.eventDao.remove(event);
+		this.eventDao.delete(event);
 	}
 	
 }

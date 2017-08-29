@@ -22,7 +22,7 @@ public class GroupManagerImpl implements GroupManager{
 
 	@Override
 	public Group findById(Long id) {
-		return this.groupDao.findById(id);
+		return this.groupDao.findOne(id);
 	}
 
 	@Override
@@ -37,17 +37,17 @@ public class GroupManagerImpl implements GroupManager{
 
 	@Override
 	public Group update(Group e) {
-		return this.groupDao.update(e);
+		return this.groupDao.save(e);
 	}
 
 	@Override
 	public Iterable<Group> update(Iterable<Group> e) {
-		return this.groupDao.update(e);
+		return this.groupDao.save(e);
 	}
 
 	@Override
 	public void remove(Group e) {
-		this.groupDao.remove(e);
+		this.groupDao.delete(e);
 		
 	}
 

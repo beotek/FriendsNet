@@ -29,7 +29,7 @@ public class PostManagerImpl implements PostManager{
 
 	@Override
 	public Post findById(Long id) {
-		return this.postDao.findById(id);
+		return this.postDao.findOne(id);
 	}
 
 	@Override
@@ -44,17 +44,17 @@ public class PostManagerImpl implements PostManager{
 
 	@Override
 	public Post update(Post e) {
-		return this.postDao.update(e);
+		return this.postDao.save(e);
 	}
 
 	@Override
 	public Iterable<Post> update(Iterable<Post> e) {
-		return this.postDao.update(e);
+		return this.postDao.save(e);
 	}
 
 	@Override
 	public void remove(Post e) {
-		this.postDao.remove(e);
+		this.postDao.delete(e);
 		
 	}
 

@@ -26,7 +26,7 @@ public class PersonManagerImpl implements PersonManager{
 	@Override
 	public Person findById(Long id) {
 		
-		return this.personDao.findById(id);
+		return this.personDao.findOne(id);
 	}
 
 	@Override
@@ -41,24 +41,24 @@ public class PersonManagerImpl implements PersonManager{
 
 	@Override
 	public Person update(Person e) {
-		return this.personDao.update(e);
+		return this.personDao.save(e);
 	}
 
 	@Override
 	public Iterable<Person> update(Iterable<Person> e) {
-		return this.personDao.update(e);
+		return this.personDao.save(e);
 	}
 
 	@Override
 	public void remove(Person e) {
-		this.personDao.remove(e);
+		this.personDao.delete(e);
 		
 	}
 
 	@Override
 	public Person relatePersons(Long id, Long id2) {
-		final Person person = personDao.findById(id);
-		final Person friend = personDao.findById(id2);
+		final Person person = personDao.findOne(id);
+		final Person friend = personDao.findOne(id2);
 		person.getPersons().add(friend);
 		friend.getPersons().add(person);
 		return personDao.save(person);
