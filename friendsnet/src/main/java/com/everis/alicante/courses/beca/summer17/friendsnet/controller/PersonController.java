@@ -50,8 +50,8 @@ public class PersonController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void remove(@PathVariable Long l) {
-		manager.remove(manager.findById(l));
+	public void remove(@PathVariable Long id) {
+		manager.remove(manager.findById(id));
 	}
 	
 }
