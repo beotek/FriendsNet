@@ -7,7 +7,9 @@ import com.everis.alicante.courses.beca.summer17.friendsnet.dao.LikeDAO;
 import com.everis.alicante.courses.beca.summer17.friendsnet.dao.PersonDAO;
 import com.everis.alicante.courses.beca.summer17.friendsnet.dao.PostDAO;
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Like;
+import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Post;
+import com.everis.alicante.courses.beca.summer17.friendsnet.entity.enums.LikeType;
 import com.everis.alicante.courses.beca.summer17.friendsnet.manager.PostManager;
 
 @Service
@@ -58,8 +60,14 @@ public class PostManagerImpl implements PostManager{
 	}
 
 	@Override
-	public Post addLike(Like like) {
-		return null;
+	public Like addLike(Long id, Long idUser, LikeType likeType) {
+		final Post post = postDao.findOne(id);
+		final Person person = personDAO.findOne(idUser);
+		final Like like = new Like();
+		like.setLikesByPerson(person);
+		like.setLikesByPost(post);
+		like.setType(likeType);
+		return likeDAO.save(like);
 	}
 
 }

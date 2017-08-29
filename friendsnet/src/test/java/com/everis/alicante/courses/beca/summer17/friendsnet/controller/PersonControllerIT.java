@@ -79,6 +79,7 @@ public class PersonControllerIT {
         //Arrange
         List<Person> personList = new ArrayList<>();
         personList.add(new Person());
+        personList.add(new Person());
         HttpEntity<List<Person>> entity = new HttpEntity<List<Person>>(personList, headers);
 
         // Act
