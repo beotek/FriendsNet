@@ -3,6 +3,9 @@ package com.everis.alicante.courses.beca.summer17.friendsnet.controller;
 import com.everis.alicante.courses.beca.summer17.friendsnet.dao.PersonDAO;
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.ExpectedDatabase;
 
 import java.util.Set;
 
@@ -21,10 +24,18 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
+        DirtiesContextTestExecutionListener.class,
+        TransactionalTestExecutionListener.class,
+        DbUnitTestExecutionListener.class})
 public class PersonControllerIT {
 
     @LocalServerPort
@@ -41,14 +52,7 @@ public class PersonControllerIT {
 
     @Before
     public void setup() {
-
-//    	Iterable<Person> persons = dao.findAll();
-//    	for(Person person: persons) {
-//    		dao.remove(person);
-//    	}
-    	
         this.mapper = new ObjectMapper();
-      
     }
 
 
@@ -67,13 +71,13 @@ public class PersonControllerIT {
     }
 
     @Test
+    @DatabaseSetup("/db/initial-person.xml")
+    @ExpectedDatabase("/db/after-saving-person.xml")
     public void testFindAllWithContent() throws JSONException {
         //Arrange
-        HttpEntity<String> entity = new HttpEntity<String>(null, headers);
-        Person person = new Person();
-        person.setName("taka");
-        person.setSurname("toko");
-        dao.save(person);
+        List<Person> personList = new ArrayList<>();
+        personList.add(new Person());
+        HttpEntity<List<Person>> entity = new HttpEntity<List<Person>>(personList, headers);
 
         // Act
         ResponseEntity<String> response = restTemplate.exchange(
@@ -81,15 +85,15 @@ public class PersonControllerIT {
                 HttpMethod.GET, null, String.class);
 
         // Assert
-        JSONAssert.assertEquals("[{'id': 1, 'name': 'taka', 'surname':'toko'} ]", response.getBody(), false);
+        JSONAssert.assertEquals("[{'id': 1, 'name':''}, {'id': 1, 'name':''}]", response.getBody(), false);
     }
-    
-  @Test
-  public void findById() {
-	  
-	  
-  }
-  
+
+
+
+    private String createURLWithPort(String uri) {
+        return "http://localhost:" + port + uri;
+    }
+
   @Test
   public void testCreate() throws JSONException {
      
@@ -114,7 +118,5 @@ public class PersonControllerIT {
 	  
   }
 
-    private String createURLWithPort(String uri) {
-        return "http://localhost:" + port + uri;
-    }
+  
 }
