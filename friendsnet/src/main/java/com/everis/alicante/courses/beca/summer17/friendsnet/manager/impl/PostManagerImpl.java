@@ -55,12 +55,11 @@ public class PostManagerImpl implements PostManager{
 	@Override
 	public void remove(Post e) {
 		this.postDao.delete(e);
-		
 	}
 
 	@Override
 	public Post addLike(Like like) {
-		return this.postDao.addLike(like);
+		return null;
 	}
 
 }

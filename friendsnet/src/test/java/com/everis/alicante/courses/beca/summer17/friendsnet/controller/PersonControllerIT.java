@@ -7,6 +7,8 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -109,8 +111,7 @@ public class PersonControllerIT {
               HttpMethod.POST, entity, String.class);
 
       // Assert
-      JSONAssert.assertEquals("{'id': 1, 'name': 'taka', 'surname':'TAKA'} ", response.getBody(), false);
-	  
+      JSONAssert.assertEquals("{'id': 1, 'name': 'taka', 'surname':'TAKA'} ", response.getBody(), false); 
   }
   
   @Test
