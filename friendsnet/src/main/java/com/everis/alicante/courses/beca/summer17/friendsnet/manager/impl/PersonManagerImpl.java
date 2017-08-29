@@ -56,8 +56,12 @@ public class PersonManagerImpl implements PersonManager{
 	}
 
 	@Override
-	public Person relatePersons(Long id, Iterable<Long> personsIds) {
-		return this.personDao.relatePersons(id, (List<Long>) personsIds);
+	public Person relatePersons(Long id, Long id2) {
+		final Person person = personDao.findById(id);
+		final Person friend = personDao.findById(id2);
+		person.getPersons().add(friend);
+		friend.getPersons().add(person);
+		return personDao.save(person);
 	}
 
 

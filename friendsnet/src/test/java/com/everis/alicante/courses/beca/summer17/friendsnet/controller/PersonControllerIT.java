@@ -46,6 +46,7 @@ public class PersonControllerIT {
 //    	for(Person person: persons) {
 //    		dao.remove(person);
 //    	}
+    	
         this.mapper = new ObjectMapper();
       
     }

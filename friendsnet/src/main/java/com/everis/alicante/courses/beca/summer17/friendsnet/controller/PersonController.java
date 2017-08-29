@@ -44,8 +44,8 @@ public class PersonController {
 	}
 	
 	@PostMapping("{id}/relate")
-	public Person relate(@RequestBody Long id, @RequestBody List<Long> persons) {
-		return manager.relatePersons(id,persons);
+	public Person relate(@RequestBody Long id, @RequestBody Long id2) {
+		return manager.relatePersons(id,id2);
 	}
 	
 	@DeleteMapping("/{id}")

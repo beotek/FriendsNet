@@ -61,8 +61,5 @@ public class Person implements FNEntity {
 	@JsonIgnore
 	private Set<Event> events;
 
-//	 public void relate(List<Person> persons) {
-//	 this.getPersons().addAll(persons);
-//	 }
 
 }
