@@ -18,11 +18,16 @@ import javax.persistence.Table;
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.enums.EventType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Data;
 
-@Data
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name="EVENT")
+@EqualsAndHashCode(callSuper = false, exclude = { "personsEvent", "posts" })
 public class Event implements FNEntity {
 
 	@Id

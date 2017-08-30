@@ -116,8 +116,22 @@ public class PersonControllerIT {
   }
   
   @Test
-  public void testFindById() {
+  public void testFindById() throws JSONException {
 	  
+	  Person person = new Person();
+	  person.setName("taka");
+	  person.setSurname("TAKA");
+	  
+	 // HttpEntity<Person> entity = new HttpEntity<Person>(person, headers);
+	  
+	  // Act
+      ResponseEntity<String> response = restTemplate.exchange(
+              createURLWithPort("/person/1"),
+              HttpMethod.GET, null, String.class);
+
+      // Assert
+      JSONAssert.assertEquals("{'id': 1, 'name': 'taka', 'surname':'TAKA'} ", response.getBody(), false); 
+ 
   }
 
   

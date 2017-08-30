@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
 import com.everis.alicante.courses.beca.summer17.friendsnet.manager.PersonManager;
 
+import lombok.EqualsAndHashCode;
+
 @RestController
 @RequestMapping("/person")
 @Transactional

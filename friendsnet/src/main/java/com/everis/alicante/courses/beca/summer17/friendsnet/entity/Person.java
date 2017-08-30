@@ -1,6 +1,6 @@
 package com.everis.alicante.courses.beca.summer17.friendsnet.entity;
 
-import java.util.List;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -17,14 +17,16 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+
+@Getter
+@Setter
 @Entity
 @Table(name = "PERSON")
-@EqualsAndHashCode(callSuper = false, exclude = { "persons" })
+@EqualsAndHashCode(callSuper = false, exclude = { "persons", "groups", "likes", "posts", "events", "person" })
 public class Person implements FNEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

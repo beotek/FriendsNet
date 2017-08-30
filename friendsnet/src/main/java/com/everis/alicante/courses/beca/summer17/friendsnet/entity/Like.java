@@ -17,9 +17,11 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.enums.LikeType;
 
-import lombok.Data;
 
-@Data
+import lombok.Getter;
+import lombok.Setter;
+@Getter
+@Setter
 @Entity
 @Table(name="OPINION")
 public class Like implements FNEntity{

@@ -21,11 +21,15 @@ import org.hibernate.annotations.CreationTimestamp;
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.enums.PostType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name="POST")
+@EqualsAndHashCode(callSuper = false, exclude = { "likes" })
 public class Post implements FNEntity {
 
 	@Id
